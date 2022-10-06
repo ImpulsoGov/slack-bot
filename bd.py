@@ -35,7 +35,7 @@ logger.info("Configurando interface com o banco de dados...")
 logger.info("Obtendo parâmetros de conexão com o banco de dados...")
 load_dotenv()
 
-BD_HOST: Final[str] = os.getenv("IMPULSOETL_BD_HOST", "localhost")
+BD_HOST: Final[str] = os.getenv("IMPULSOETL_BD_HOST", "35.239.239.250")
 BD_PORTA: Final[int] = int(os.getenv("IMPULSOETL_BD_PORTA", "5432"))
 BD_NOME: Final[str] = os.getenv("IMPULSOETL_BD_NOME", "esus-backups")
 BD_USUARIO: Final[str] = os.getenv("IMPULSOETL_BD_USUARIO", "etl")

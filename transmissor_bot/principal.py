@@ -11,16 +11,17 @@ import os
 from typing import Final
 from slack_sdk import WebClient
 from sqlalchemy.orm import Session
+import sys 
 
-from bd import Sessao
+sys.path.append(r"\slack-bot")
 from loggers import logger
-from bot_transmissores.transmissoes_falhas import processa_transmissoes_com_falhas
-from bot_transmissores.transmissoes_atrasadas import processa_transmissoes_atrasadas
+from transmissor_bot.transmissoes_falhas import processa_transmissoes_com_falhas
+from transmissor_bot.transmissoes_atrasadas import processa_transmissoes_atrasadas
 
 
-TOKEN_SLACK_APP: Final[str | None] = os.getenv("TOKEN_SLACK_APP", None)
+TOKEN_SLACK_APP_TRANSMISSOR: Final[str | None] = os.getenv("TOKEN_SLACK_APP_TRANSMISSOR", None)
 CANAL_SLACK_TRANSMISSOR: Final[str | None] = os.getenv("CANAL_SLACK_APP", None)
-client = WebClient(TOKEN_SLACK_APP)
+client = WebClient(TOKEN_SLACK_APP_TRANSMISSOR)
 
 
 def captura_erros_transmissao(
@@ -90,7 +91,7 @@ def captura_agendamentos_atrasados(
             logger.info("Conteúdo da mensagem : {notificacao}",notificacao=notificacao)
 
 
-def principal(sessao: Session, teste: bool = True) -> None:
+def obter_falhas_transmissor(sessao: Session, teste: bool = False) -> None:
     """Executa todos os scripts de envio de logs para os canais do Slack.
 
     Argumentos:
@@ -106,6 +107,3 @@ def principal(sessao: Session, teste: bool = True) -> None:
     captura_agendamentos_atrasados(sessao=sessao,teste=teste)
 
 
-if __name__ == "__main__":
-    with Sessao() as sessao:
-        principal(sessao=sessao)

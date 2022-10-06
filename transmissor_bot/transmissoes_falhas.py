@@ -10,7 +10,9 @@ from __future__ import annotations
 from sqlalchemy.orm import Session,Query
 from datetime import datetime
 from pytz import timezone
+import sys 
 
+sys.path.append(r"\slack-bot")
 from bd import tabelas
 from loggers import logger
 
