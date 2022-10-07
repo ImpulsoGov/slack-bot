@@ -17,6 +17,6 @@ jobs:
         SLACK_WEBHOOK_URL: ${{secrets.SLACK_WEBHOOK_URL}}
       run: docker login -u $DOCKER_USER -p $DOCKER_SENHA
     - name: Construir imagem do Slackbot Transmissor
-      run: docker build -t impulsogov/slack-bot:latest .
+      run: docker build -t impulsogov/slackbot:latest .
     - name: Enviar imagem do Slackbot Transmissor
-      run: docker push impulsogov/slack-bot
+      run: docker push impulsogov/slackbot
