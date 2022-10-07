@@ -1,1 +1,22 @@
+name: Cria imagem Docker - Slackbot Transmissor
 
+on:
+  push:
+    branches: [ main ]
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+    - uses: actions/checkout@v2
+    - name: Docker login
+      env:
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+        DOCKER_SENHA: ${{secrets.DOCKER_SENHA}}
+        SLACK_WEBHOOK_URL: ${{secrets.SLACK_WEBHOOK_URL}}
+      run: docker login -u $DOCKER_USER -p $DOCKER_SENHA
+    - name: Construir imagem do Slackbot Transmissor
+      run: docker build -t impulsogov/slack-bot:latest .
+    - name: Enviar imagem do Slackbot Transmissor
+      run: docker push impulsogov/slack-bot
