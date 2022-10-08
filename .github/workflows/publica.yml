@@ -14,4 +14,8 @@ jobs:
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
         DOCKER_SENHA: ${{secrets.DOCKER_SENHA}}
-      run: docker login -u $DOCKER_USER -p $DOCKER_SENHA
+      run: docker login -u "${{ secrets.DOCKER_USER }}" -p "${{ secrets.DOCKER_SENHA }}"
+    - name: Construir imagem do Slackbot Transmissor
+      run: docker build -t impulsogov/slackbot:latest .
+    - name: Enviar imagem do Slackbot Transmissor
+      run: docker push impulsogov/slackbot
