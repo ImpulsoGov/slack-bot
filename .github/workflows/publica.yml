@@ -18,4 +18,4 @@ jobs:
     - name: Construir imagem do Slackbot Transmissor
       run: docker build -t impulsogov/slackbot:latest .
     - name: Enviar imagem do Slackbot Transmissor
-      run: docker push impulsogov/slackbot:latest .
+      run: docker push impulsogov/slackbot:latest
