@@ -15,7 +15,7 @@ jobs:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
         DOCKER_SENHA: ${{secrets.DOCKER_SENHA}}
         SLACK_WEBHOOK_URL: ${{secrets.SLACK_WEBHOOK_URL}}
-      run: docker login -u $DOCKER_USER -p $DOCKER_SENHA
+      run: winpty docker login -u $DOCKER_USER -p $DOCKER_SENHA
     - name: Construir imagem do Slackbot Transmissor
       run: docker build -t impulsogov/slackbot:latest .
     - name: Enviar imagem do Slackbot Transmissor
