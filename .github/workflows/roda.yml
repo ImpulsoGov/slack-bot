@@ -1,1 +1,26 @@
+# SPDX-FileCopyrightText: 2021, 2022 ImpulsoGov <contato@impulsogov.org>
+#
+# SPDX-License-Identifier: MIT
 
+
+name: Roda imagem Docker - Slackbot Transmissor
+
+on:
+  schedule:
+    - cron: '0 14 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+    - uses: actions/checkout@v2
+    - name: Docker login
+      env:
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+        DOCKER_SENHA: ${{secrets.DOCKER_SENHA}}
+      run: docker login -u "${{ secrets.DOCKER_USER }}" -p "${{ secrets.DOCKER_SENHA }}"
+    - name: Receber imagem Docker Slackbot
+      run: docker pull impulsogov/slackbot:latest
+    - name: Executa Slackbot
+      run: docker run impulsogov/slackbot:latest
