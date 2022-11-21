@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: 2021, 2022 ImpulsoGov <contato@impulsogov.org>
 
 SPDX-License-Identifier: MIT
 -->
-![Badge em Produção](https://img.shields.io/badge/status-em%20produ%C3%A7%C3%A3o-green)
+![Badge em Produção](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
 
 # Slack Bot
 
