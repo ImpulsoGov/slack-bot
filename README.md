@@ -25,7 +25,7 @@ Automação de envio de notificações de logs e mensagens sobre transmissor ten
 <div id='contexto'/>  
 
 ## :rocket: Contexto
-
+A ImpulsoGov desenvolveu um transmissor de dados que conecta o servidor PEC municipal com nosso banco a fim de transmitir dados nominais para o desenvolvimento do projeto de busca ativa. O primeiro modelo de transmissão necessitou de acompanhamento frequente quanto ao sucesso de sua operação. O Slack Bot nasceu da necessidade de gerar notificações emergentes de operações que ocorrem no banco da ImpulsoGov aos canais do Slack. 
 
 
 *******
@@ -49,13 +49,29 @@ Automação de envio de notificações de logs e mensagens sobre transmissor ten
  <div id='rodando'/> 
  
 ## :gear: Rodando em produção
+O pacote utiliza ações do
+[GitHub Actions](https://docs.github.com/actions) para enviar imagens para o
+[DockerHub da Impulso Gov](https://hub.docker.com/orgs/impulsogov/repositories)
+sempre que há uma atualização da branch principal do repositório. Diariamente,
+essa imagem é baixada para uma máquina virtual que executa as capturas
+pendentes.
+
+Para executar os pacotes em produção, defina as credenciais necessárias como [segredos no repositório](https://docs.github.com/en/actions/security-guides/encrypted-secrets). Se necessário, ajuste os arquivos do diretório [.github/workflows](./.github/workflows).
 
 *******
 
 <div id='instalacao'/> 
 
  ## 🛠️ Instruções para instalação e acesso ao projeto
- 
+
+Antes de rodar o container com o pacote localmente, crie um arquivo nomeado `.env` na raiz do repositório. Esse arquivo deve conter as credenciais de acesso ao banco de dados e outras configurações de execução do projeto. Você pode utilizar o modelo do arquivo `.env.sample` como referência.
+
+Em seguida, execute os comandos abaixo em um terminal de linha de comando (a execução completa pode demorar):
+
+```sh
+$ docker build -t slackbot .
+$ docker run -p 8888:8888 slackbot:latest
+```
 
 *******
 
