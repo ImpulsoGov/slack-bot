@@ -17,7 +17,7 @@ from bd import tabelas
 from loggers import logger
 
 fuso_horario = timezone("America/Sao_Paulo")
-tabela_monitoramento_transmissoes = "busca_ativa.monitoramento_transmissoes"
+tabela_monitoramento_transmissoes = "configuracoes.monitoramento_transmissoes"
 
 
 def cria_mensagem(
@@ -86,7 +86,7 @@ def consulta_erros_agendamentos(
     tabela = tabelas[tabela_destino]
     return (
         sessao.query(tabela)
-            .filter(tabela.c.transmissao_atrasado == True)
+            .filter(tabela.c.status_transmissao == 'Transmissão atrasada')
             .all()
             )
 

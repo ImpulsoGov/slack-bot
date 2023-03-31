@@ -91,7 +91,7 @@ def captura_agendamentos_atrasados(
             logger.info("Conteúdo da mensagem : {notificacao}",notificacao=notificacao)
 
 
-def obter_falhas_transmissor(sessao: Session, teste: bool = False) -> None:
+def obter_falhas_transmissor(sessao: Session, teste: bool = True) -> None:
     """Executa todos os scripts de envio de logs para os canais do Slack.
 
     Argumentos:
